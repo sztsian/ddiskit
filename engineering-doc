@@ -1,0 +1,104 @@
+Driver Up date Program Workflow
+==============================
+Partner side:
+  Create BZ:
+    Component: Driver Update Disk
+    Content filled templates:
+      6.x https://bugzilla.redhat.com/show_bug.cgi?id=681975
+      7.x https://bugzilla.redhat.com/show_bug.cgi?id=1090185
+
+NOTE: This bz created by partner is only for communication with partner.
+      BZ don't have any flags.
+      When dup request is resolved, this bz will be closed MANUALY by enginee
+      like CURRENT RELEASE and in fixed filed will be rpm name.
+NOTE2: For request is significant
+       1) PCI or USB id for requested hardware.
+       2) Hardware support in Y-stream kernel
+       If these will be ok, enginned can start with next steps
+
+Engineer side:
+  This part can by done by two ways:
+  Old with kernel "intree" scripts
+  New with ddiskit  
+
+Old way (DEPRECATED):
+  Create testing DUD:
+    1) Clone rhel kernel
+         EL6: git://git.app.eng.bos.redhat.com/rhel6.git
+         EL7: git://git.app.eng.bos.redhat.com/rhel7.git
+    2) Update redhat/dup directory content
+       note: intree code is deprecated and DON'T USE IT!!!!
+       Right version currently have only poros!!!
+    3) Edit redhat/dup/Makefile.sources file:
+       Example:
+         # bnx2x
+         DUP_SOURCE_bnx2x= \
+         drivers/net/ethernet/broadcom/bnx2x/* \
+         drivers/net/ethernet/broadcom/cnic_if.h
+         DUP_VERSION_bnx2x="1.712.30"
+         DUP_FIRMWARE_bnx2x= \
+         firmware/bnx2x-e1-7.13.1.0.fw
+         DUP_FIRMWARE_VERSION_bnx2x="7.13.1"
+    4) Update target kernel version:
+       This step is different for EL6/EL7
+         EL6: Update redhat/dup/Makefile
+           First line contain this:
+             BUILD_TAG=2.6.32-573.el6
+           Update build tag for right target version.
+           WARNING: Please, use only rhel6 GA versions.
+                    DON'T USE z-stream versions!
+         EL7: Boot into target kernel
+           el7 script using build tag uname -r
+           WARNING: Please, use only rhel7 GA versions.
+                    DON'T USE z-stream versions!           
+    5) Replace text in kmodtool:
+         "%description   -n kmod-${kmod_name}${dashvariant}
+         This package provides the ${kmod_name} kernel modules built for
+         the Linux kernel ${verrel}${dotvariant} for the %{_target_cpu}
+         family of processors." 
+          
+          ->
+         
+         "This RPM has been provided by Red Hat for testing purposes only and is
+          NOT supported for any other use. This RPM should NOT be deployed for
+          purposes other than testing and debugging."
+    6) Create backport patch
+       For example, when making backport for bnx2x from
+       2.6.32-600.el6 to 2.6.32-573.el6 you will create patch
+       diff 2.6.32-573.el6 2.6.32-600.el6
+       When you have final patch copy it into redhat/dup/patches/
+
+    7) Update symvers and greylist
+       make -f redhat/dup/Makefile DUP_DRIVER=bnx2x update-symvers
+       make -f redhat/dup/Makefile DUP_DRIVER=bnx2x update-greylist
+
+    8) Build rpm
+       make -f redhat/dup/Makefile DUP_DRIVER=bnx2x rpm
+
+    9) brew TODO
+
+    10) Build ISO
+        
+
+  Create Final DUD:
+    1) Use srpm from step 9!
+    2) unpack it 
+    3) replace string in kmodtool
+    4) pack it back
+
+  Release Final DUD:
+    1) Use Final DUD srpm only (with replaced string in kmodtool)
+    2) push srpm into dist-git
+    3) make regular build
+    4) create errata
+    5) wait for signature
+    6) download signed RPMs/SRPMs
+    7) build regular iso
+    8) provide it over people.redhat.com
+
+  Request Cleanup:
+    1) Change dup request state into CLOSED -> CURRENT RELEASE
+
+New way:
+  Use tool called ddiskit:
+  
