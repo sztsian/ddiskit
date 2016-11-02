@@ -9,8 +9,8 @@ Partner side:
 
 NOTE: This bz created by partner is only for communication with partner.
       BZ don't have any flags.
-      When dup request is resolved, this bz will be closed MANUALY by enginee
-      like CURRENT RELEASE and in fixed filed will be rpm name.
+      When dup request is resolved, this bz will be closed MANUALY by engineer
+      like CURRENT RELEASE and in fixed field will be rpm name.
 NOTE2: For request is significant
        1) PCI or USB id for requested hardware.
        2) Hardware support in Y-stream kernel
@@ -56,9 +56,7 @@ Old way (DEPRECATED):
          This package provides the ${kmod_name} kernel modules built for
          the Linux kernel ${verrel}${dotvariant} for the %{_target_cpu}
          family of processors." 
-          
           ->
-         
          "This RPM has been provided by Red Hat for testing purposes only and is
           NOT supported for any other use. This RPM should NOT be deployed for
           purposes other than testing and debugging."
@@ -67,6 +65,7 @@ Old way (DEPRECATED):
        2.6.32-600.el6 to 2.6.32-573.el6 you will create patch
        diff 2.6.32-573.el6 2.6.32-600.el6
        When you have final patch copy it into redhat/dup/patches/
+       Patch name should be driver_name.patch
 
     7) Update symvers and greylist
        make -f redhat/dup/Makefile DUP_DRIVER=bnx2x update-symvers
@@ -75,30 +74,69 @@ Old way (DEPRECATED):
     8) Build rpm
        make -f redhat/dup/Makefile DUP_DRIVER=bnx2x rpm
 
-    9) brew TODO
+    9) Build rpm with signed ko
+       Get srpm from redhat/dup/tmp/copy
+       Build it in brew:
+       brew build --scratch rhel-7.3-z-dup-candidate bnx2x.el7.src.rpm
+       NOTE: This step is required, because in brew we have sign *.ko feature
+       Sign feature is available only in special build targets called:
+       rhel-x.y-z-dup-candidate
 
     10) Build ISO
-        
+        Download RPMs/SRPMs from step9
+        Use create_disk.sh script:
+        create_disk.sh *.rpm
+        NOTE: output iso naming convention:
+        dd-driver_name-version.elx.iso for testing iso
 
-  Create Final DUD:
-    1) Use srpm from step 9!
-    2) unpack it 
-    3) replace string in kmodtool
-    4) pack it back
+    11) Provide iso over people.redhat.com and fill this into bz:
+        ---------------------------------------------------------
+        We have a DUP package ready for you to test. You can download the package here:
 
-  Release Final DUD:
-    1) Use Final DUD srpm only (with replaced string in kmodtool)
-    2) push srpm into dist-git
-    3) make regular build
-    4) create errata
-    5) wait for signature
-    6) download signed RPMs/SRPMs
-    7) build regular iso
-    8) provide it over people.redhat.com
+        ISO: link to iso 
 
-  Request Cleanup:
-    1) Change dup request state into CLOSED -> CURRENT RELEASE
+        Please give it a try and let us know if it works properly for you.
+
+        -Petr
+        ---------------------------------------------------------
+
+    12) Wait for partner testing and do necessary steps for release:
+        Request dist-git repo called: drivername with branch rhelx.y
+        Request z-stream clone
+        NOTE: z-stream clone is clone from original y-stream request NOT dup request
+              This part of work will by done by gcase
+
+  Create and release Final rpms/DUD:
+    1) Download srpm from step 9
+    2) Unpack it:
+       rpm -uvh driver.src.rpm
+    3) revert step 5 (replace kmodtool text)
+    4) Update SPEC/driver.spec
+       There need add this string into changelog:
+       - Resolves: #bz000000
+       BZ is z-stream number
+    4) Rebuild SRPM
+       rpmbuild SPEC/driver.spec
+    5) Import srpm into distgit
+         rhpkg import driver.src.rpm
+         git commit -a -s
+         rhpkg push
+         rhpkg build --traget=rhel-7.3-z-dup-candidate
+    6) Create errata 
+    7) Wait for rpm signatures
+    8) Download signed RPMS/SRPMS
+       NOTE: here is signed RPM/SRPM! this is not *.ko signature from brew
+    9) Build release ISO
+         Use create_disk.sh script:
+         create_disk.sh *.rpm
+         NOTE: output iso naming convention:
+         dd-driver_name-version.elx_y.iso for release iso
+    10) provide iso over people.redhat.com
+
+  Cleanup:
+    1) Change errata state from NEW_FILES into ON_QA
+    2) Change dup request state into CLOSED -> CURRENT RELEASE
+       NOTE: This step do after dup release (errata in SHIP_LIVE) 
 
 New way:
   Use tool called ddiskit:
-  
