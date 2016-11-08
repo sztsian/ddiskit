@@ -140,3 +140,96 @@ Old way (DEPRECATED):
 
 New way:
   Use tool called ddiskit:
+  1) Install python3-ddiskit rpm package
+
+  Create testing DUD:
+    1) Clone rhel kernel
+         EL6: git://git.app.eng.bos.redhat.com/rhel6.git
+         EL7: git://git.app.eng.bos.redhat.com/rhel7.git
+    2) Create backport patch
+       For example, when making backport for bnx2x from
+       2.6.32-600.el6 to 2.6.32-573.el6 you will create patch
+       diff 2.6.32-573.el6 2.6.32-600.el6
+    3) $ ddiskit prepare_sources
+       Command will prepare directory structure
+       .
+       |-- iso
+       |-- module.config
+       |-- rpm
+       |   |-- BUILD
+       |   |-- BUILDROOT
+       |   |-- RPMS
+       |   |-- SOURCES
+       |   |-- SPECS
+       |   `-- SRPMS
+       `-- src
+           |-- firmware
+           `-- patches
+    4) Copy source code into src
+       Copy patches from step 2 into src/patches
+        Example: $ cd rhel-kernel
+                 $ cp -r drivers/net/ethernet/broadcom/bnx2x/ ../src/
+        NOTE: respect kernel directory structure inside new src dir!!!!
+       Copy firmware files into srs/firmware
+    5) Udate necessary fileds into module.config
+    6) $ ddiskit generate_spec
+    7) $ ddiskit build_rpm
+    8) Build rpm with signed ko
+       Get srpm from rpm/SRPM
+       Build it in brew:
+       brew build --scratch rhel-7.3-z-dup-candidate bnx2x.el7.src.rpm
+       NOTE: This step is required, because in brew we have sign *.ko feature
+       Sign feature is available only in special build targets called:
+       rhel-x.y-z-dup-candidate
+
+    9) Build ISO
+       Download RPMs/SRPMs from step8
+       $ ddiskit build_rpm rpm_directory
+       NOTE: output iso naming convention:
+       dd-driver_name-version.elx.iso for testing iso
+
+    10) Provide iso over people.redhat.com and fill this into bz:
+        ---------------------------------------------------------
+        We have a DUP package ready for you to test. You can download the package here:
+
+        ISO: link to iso 
+
+        Please give it a try and let us know if it works properly for you.
+
+        -Petr
+        ---------------------------------------------------------
+
+    11) Wait for partner testing and do necessary steps for release:
+        Request dist-git repo called: drivername with branch rhelx.y
+        Request z-stream clone
+        NOTE: z-stream clone is clone from original y-stream request NOT dup request
+              This part of work will by done by gcase
+
+  Create and release Final rpms/DUD:
+    1) Download srpm from step 8
+    2) Update SPEC/driver.spec
+       There need add this string into changelog:
+       - Resolves: #bz000000
+       BZ is z-stream number
+    3) Rebuild SRPM
+       rpmbuild SPEC/driver.spec
+    4) Import srpm into distgit
+         rhpkg import driver.src.rpm
+         git commit -a -s
+         rhpkg push
+         rhpkg build --traget=rhel-7.3-z-dup-candidate
+    5) Create errata 
+    6) Wait for rpm signatures
+    7) Download signed RPMS/SRPMS
+       NOTE: here is signed RPM/SRPM! this is not *.ko signature from brew
+    8) Build release ISO
+         Use create_disk.sh script:
+         create_disk.sh *.rpm
+         NOTE: output iso naming convention:
+         dd-driver_name-version.elx_y.iso for release iso
+    9) provide iso over people.redhat.com
+
+  Cleanup:
+    1) Change errata state from NEW_FILES into ON_QA
+    2) Change dup request state into CLOSED -> CURRENT RELEASE
+       NOTE: This step do after dup release (errata in SHIP_LIVE) 
