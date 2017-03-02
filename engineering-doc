@@ -365,6 +365,12 @@ New way:
         ON_QA
     13) Wait for RPM signatures
     14) Download signed RPMs/SRPMs
+        There is no direct way pointing straight at the signed RPMs. On the
+        https://errata.devel.redhat.com/advisory/<advisory ID>/builds page there
+        are some paths, and by replacing /mnt/redhat prefix with
+        https://download-node-02.eng.bos.redhat.com/ there, one can get URL for
+        downloading signed RPMs.
+
         NOTE: here are signed RPM/SRPM! This is different from *.ko signature
               from brew (which is also present).
     15) Build release ISO
