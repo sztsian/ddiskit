@@ -101,7 +101,7 @@ Old way (DEPRECATED):
         ---------------------------------------------------------
 
     12) Wait for partner testing and do necessary steps for release:
-        Request dist-git repo called: drivername with branch rhelx.y
+        Request dist-git repo called: drivername with branch rhel-x.y
         Request Z-stream clone
         NOTE: Z-stream clone is clone from original Y-stream request NOT DUP request
               This part of work will by done by gcase
@@ -242,7 +242,7 @@ New way:
         ---------------------------------------------------------
 
     12) Wait for partner testing and do necessary steps for release:
-        Request dist-git repo called: drivername with branch rhelx.y
+        Request dist-git repo called: drivername with branch rhel-x.y
         Request Z-stream clone
         NOTE: Z-stream clone is clone from original Y-stream request NOT DUP request
               This part of work will by done by gcase
