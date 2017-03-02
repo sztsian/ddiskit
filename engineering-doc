@@ -87,7 +87,7 @@ Old way (DEPRECATED):
         Use create_disk.sh script:
         create_disk.sh *.rpm
         NOTE: output ISO naming convention:
-        dd-driver_name-version.elx.iso for testing ISO
+        dd-<driver_name>-<version>.el<x>.iso for testing ISO
 
     11) Provide ISO over people.redhat.com and fill this into bz:
         ---------------------------------------------------------
@@ -101,7 +101,7 @@ Old way (DEPRECATED):
         ---------------------------------------------------------
 
     12) Wait for partner testing and do necessary steps for release:
-        Request dist-git repo called: drivername with branch rhel-x.y
+        Request dist-git repo called: <driver_name> with branch rhel-<x>.<y>
         Request Z-stream clone
         NOTE: Z-stream clone is clone from original Y-stream request NOT DUP request
               This part of work will by done by gcase
@@ -130,7 +130,7 @@ Old way (DEPRECATED):
          Use create_disk.sh script:
          create_disk.sh *.rpm
          NOTE: output ISO naming convention:
-         dd-driver_name-version.elx_y.iso for release ISO
+         dd-<driver_name>-<version>.el<x>_<y>.iso for release ISO
     10) provide ISO over people.redhat.com
 
   Cleanup:
@@ -209,13 +209,13 @@ New way:
        brew build --scratch rhel-7.3-z-dup-candidate bnx2x.el7.src.rpm
        NOTE: This step is required, because in brew we have sign *.ko feature
        Sign feature is available only in special build targets called:
-       rhel-x.y-z-dup-candidate
+       rhel-<x>.<y>-z-dup-candidate
 
     9) Build ISO
        Download RPMs/SRPMs from step8
-       $ ddiskit build_iso rpm_directory
+       $ ddiskit build_iso <rpm_directory>
        NOTE: output ISO naming convention:
-       dd-driver_name-version.elx.iso for testing ISO
+       dd-<driver_name>-<version>.el<x>.iso for testing ISO
 
     10) Provide ISO over people.redhat.com
         * In case you can't access people.redhat.com via ssh, you are probably
@@ -242,7 +242,7 @@ New way:
         ---------------------------------------------------------
 
     12) Wait for partner testing and do necessary steps for release:
-        Request dist-git repo called: drivername with branch rhel-x.y
+        Request dist-git repo called: <driver_name> with branch rhel-<x>.<y>
         Request Z-stream clone
         NOTE: Z-stream clone is clone from original Y-stream request NOT DUP request
               This part of work will by done by gcase
@@ -256,7 +256,7 @@ New way:
     3) Rebuild SRPM
        rpmbuild SPEC/driver.spec
     4) Import SRPM into dist-git
-         rhpkg import driver.src.rpm
+         rhpkg import <driver_name>.src.rpm
          git commit -a -s
          rhpkg push
          rhpkg build --traget=rhel-7.3-z-dup-candidate
@@ -268,7 +268,7 @@ New way:
          Use create_disk.sh script:
          create_disk.sh *.rpm
          NOTE: output ISO naming convention:
-         dd-driver_name-version.elx_y.iso for release ISO
+         dd-<driver_name>-<version>.el<x>_<y>.iso for release ISO
     9) provide ISO over people.redhat.com
 
   Cleanup:
