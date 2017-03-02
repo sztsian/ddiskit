@@ -169,12 +169,12 @@ New way:
         Example: $ cd rhel-kernel
                  $ cp -r drivers/net/ethernet/broadcom/bnx2x/ ../src/
         NOTE: respect kernel directory structure inside new src dir!!!!
-       Copy firmware files into srs/firmware
+       Copy firmware files into src/firmware
     5) Update necessary fields into module.config
     6) $ ddiskit generate_spec
     7) $ ddiskit build_rpm
     8) Build RPM with signed ko
-       Get SRPM from rpm/SRPM
+       Get SRPM from rpm/SRPMS
        Build it in brew:
        brew build --scratch rhel-7.3-z-dup-candidate bnx2x.el7.src.rpm
        NOTE: This step is required, because in brew we have sign *.ko feature
@@ -206,7 +206,7 @@ New way:
 
   Create and release Final RPMs/DUD:
     1) Download SRPM from step 8
-    2) Update SPEC/driver.spec
+    2) Update rpm/SPECS/driver.spec
        There need add this string into changelog:
        - Resolves: #bz000000
        BZ is Z-stream number
