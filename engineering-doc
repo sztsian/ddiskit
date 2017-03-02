@@ -296,7 +296,44 @@ New way:
     6) Once it is done, package can be built:
          rhpkg build --target=rhel-7.3-z-dup-candidate
     7) Update Z-stream bug state to MODIFIED
-    8) Create errata
+    8) Create errata (https://errata.devel.redhat.com/advisory/new)
+        * You can use "Clone advisory" there and supply advisory number for
+          an existing DUP errata, like RHEA-2016:1930-02
+        * Product: Red Hat Enterprise Linux
+        * Release: RHEL-<x>.<y>.z
+        * Type: Red Hat Enhancement Advisory
+        * Embargo Date: None:
+        * Release Date: Default
+        * Package Maintainer: <your e-mail, probably the same as in
+          global.module_author_email in module.config>
+        * Manager Contact: lwang@redhat.com
+        * QA Owner: qa-errata-list@redhat.com
+        * Synopsis: new packages: kmod-<vendor>-<driver_name>
+        * Topic:
+            New kmod-<vendor>-<driver_name> package is now available for Red Hat
+            Enterprise Linux 7.
+        * Bugs or JIRA Issues Fixed: <Z-stream bug ID>
+        * Problem Description:
+            The kmod-<vendor>-<driver_name> package contains the <device product name>
+            Device Driver kernel module, which adds official support for the new
+            <device_name> devices, specifically:
+              <List of device product names>
+
+            The PCI IDs supported by this package are:
+              <List of PCI VID:DID, one per line>
+
+            The kernel modules delivered by this erratum have been made available as
+            part of the Red Hat Driver Update Program, which provides updated kernel
+            modules that add support for selected devices in advance of the next Red
+            Hat Enterprise Linux minor update release. We strongly recommend that
+            these kernel modules be only used when it is necessary to enable the
+            specific hardware mentioned in this erratum. Partners and customers
+            should continue to use the driver that is shipped in the latest Red Hat
+            Enterprise Linux kernel for all other devices that require this driver.
+            (BZ#<Z-stream bug ID>)
+
+            All users who require kmod-<vendor>-<driver_name> are advised to install
+            this new package.
     9) Wait for RPM signatures
     10) Download signed RPMs/SRPMs
         NOTE: here are signed RPM/SRPM! This is different from *.ko signature
