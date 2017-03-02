@@ -117,7 +117,7 @@ Old way (DEPRECATED):
        BZ is Z-stream number
     4) Rebuild SRPM
        rpmbuild SPEC/driver.spec
-    5) Import SRPM into distgit
+    5) Import SRPM into dist-git
          rhpkg import driver.src.rpm
          git commit -a -s
          rhpkg push
@@ -212,7 +212,7 @@ New way:
        BZ is Z-stream number
     3) Rebuild SRPM
        rpmbuild SPEC/driver.spec
-    4) Import SRPM into distgit
+    4) Import SRPM into dist-git
          rhpkg import driver.src.rpm
          git commit -a -s
          rhpkg push
