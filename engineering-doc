@@ -177,6 +177,30 @@ New way:
                       ../src/drivers/net/ethernet/broadcom/
        Copy firmware files into src/firmware
     5) Update necessary fields into module.config
+        * global.module_vendor is used as a part of RPM name. For RPMs packaged
+          by Red Hat, put "redhat" there.
+        * global.module_author and global.module_author_email also refer to
+          packager, so it makes sense to put your name and e-mail here.
+        * spec_file.module_version usually refers to internal kernel module
+          version (grep -R MODULE_VERSION src)
+        * spec_file.module_rpm_release usually starts at 1.
+        * spec_file.rpm_dist is for identifying distribution suffix
+          (like "el7_3"), but for now it is only used for automatic ISO file
+          name generation and may be deprecated in the future.
+        * spec_file.module_build_dir is a path to the directory containing
+          module source files.
+            Example: In the bnx2x example, it should be
+                     src/drivers/net/ethernet/broadcom/bnx2x
+        * spec_file.kernel_version indicates kernel package version against
+          which it should be built. Usually it is branch GA kernel, like
+          2.6.32-573.el6 or 3.10.0-514.el7 (not Z-stream kernel, like
+          3.10.0-514.6.1.el7)
+        * spec_file.git_hash should refer to git commit ID which is used as
+          a source for the source code used in the DUP.
+            Example: In the bnx2x example, this command will produce the git
+                     commit ID:
+                     $ cd rhel6
+                     $ git rev-parse HEAD
     6) $ ddiskit generate_spec
     7) $ ddiskit build_rpm
     8) Build RPM with signed ko
