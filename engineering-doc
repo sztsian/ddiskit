@@ -18,7 +18,7 @@ NOTE2: For request is significant
 
 Engineer side:
   This part can by done by two ways:
-  Old with kernel "intree" scripts
+  Old with kernel "in-tree" scripts
   New with ddiskit
 
 Old way (DEPRECATED):
@@ -27,7 +27,7 @@ Old way (DEPRECATED):
          EL6: git://git.app.eng.bos.redhat.com/rhel6.git
          EL7: git://git.app.eng.bos.redhat.com/rhel7.git
     2) Update redhat/dup directory content
-       note: intree code is deprecated and DON'T USE IT!
+       NOTE: in-tree code is deprecated and DON'T USE IT!
        Right version currently have only poros!
     3) Edit redhat/dup/Makefile.sources file:
        Example:
