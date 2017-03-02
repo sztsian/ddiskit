@@ -243,7 +243,17 @@ New way:
         ---------------------------------------------------------
 
     12) Wait for partner to perform testing and do necessary steps for release:
-        Request dist-git repo called <driver_name> with branch rhel-<x>.<y>
+        Request dist-git repo called <driver_name> with branch rhel-<x>.<y> by
+        creating a new ticket in RCM Jira (https://projects.engineering.redhat.com/):
+          * Project: "RCM"
+          * Component: "RHEL 7"
+            RHEL release)
+          * Summary: "rhel-7.3 branch for <driver_name>"
+          * Description:
+              Can I ask you to create rhel-7.3 branch in <driver_name> dist-git
+              repository? It is needed for the <driver_name> DUP package.
+
+              BZ: https://bugzilla.redhat.com/show_bug.cgi?id=<Z-stream bug ID>
         Request Z-stream clone
         NOTE: Z-stream clone is clone from original Y-stream request NOT DUP request
               This part of work is done by gcase, DUP lead
