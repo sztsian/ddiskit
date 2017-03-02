@@ -295,19 +295,19 @@ New way:
        to the failed task.
     6) Once it is done, package can be built:
          rhpkg build --target=rhel-7.3-z-dup-candidate
-    7) Create errata
-    8) Wait for RPM signatures
-    9) Download signed RPMs/SRPMs
-       NOTE: here are signed RPM/SRPM! This is different from *.ko signature
-             from brew (which is also present).
-    10) Build release ISO
+    7) Update Z-stream bug state to MODIFIED
+    8) Create errata
+    9) Wait for RPM signatures
+    10) Download signed RPMs/SRPMs
+        NOTE: here are signed RPM/SRPM! This is different from *.ko signature
+              from brew (which is also present).
+    11) Build release ISO
          $ ddiskit build_iso <rpm_directory>
          NOTE: output ISO naming convention (should be automatically generated
          by ddiskit):
          dd-<vendor>-<driver_name>-<version>.el<x>_<y>.iso for release ISO
-    11) Put ISO to people.redhat.com
+    12) Put ISO to people.redhat.com
 
   Cleanup:
-    1) Change errata state from NEW_FILES into ON_QA
     2) Change DUP request state into CLOSED -> CURRENT RELEASE
        NOTE: This step do after DUP release (errata in SHIP_LIVE state)
