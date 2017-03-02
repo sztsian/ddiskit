@@ -86,14 +86,14 @@ Old way (DEPRECATED):
         Download RPMs/SRPMs from step9
         Use create_disk.sh script:
         create_disk.sh *.rpm
-        NOTE: output iso naming convention:
-        dd-driver_name-version.elx.iso for testing iso
+        NOTE: output ISO naming convention:
+        dd-driver_name-version.elx.iso for testing ISO
 
-    11) Provide iso over people.redhat.com and fill this into bz:
+    11) Provide ISO over people.redhat.com and fill this into bz:
         ---------------------------------------------------------
         We have a DUP package ready for you to test. You can download the package here:
 
-        ISO: link to iso 
+        ISO: link to ISO
 
         Please give it a try and let us know if it works properly for you.
 
@@ -129,9 +129,9 @@ Old way (DEPRECATED):
     9) Build release ISO
          Use create_disk.sh script:
          create_disk.sh *.rpm
-         NOTE: output iso naming convention:
-         dd-driver_name-version.elx_y.iso for release iso
-    10) provide iso over people.redhat.com
+         NOTE: output ISO naming convention:
+         dd-driver_name-version.elx_y.iso for release ISO
+    10) provide ISO over people.redhat.com
 
   Cleanup:
     1) Change errata state from NEW_FILES into ON_QA
@@ -185,14 +185,14 @@ New way:
     9) Build ISO
        Download RPMs/SRPMs from step8
        $ ddiskit build_rpm rpm_directory
-       NOTE: output iso naming convention:
-       dd-driver_name-version.elx.iso for testing iso
+       NOTE: output ISO naming convention:
+       dd-driver_name-version.elx.iso for testing ISO
 
-    10) Provide iso over people.redhat.com and fill this into bz:
+    10) Provide ISO over people.redhat.com and fill this into bz:
         ---------------------------------------------------------
         We have a DUP package ready for you to test. You can download the package here:
 
-        ISO: link to iso 
+        ISO: link to ISO
 
         Please give it a try and let us know if it works properly for you.
 
@@ -225,9 +225,9 @@ New way:
     8) Build release ISO
          Use create_disk.sh script:
          create_disk.sh *.rpm
-         NOTE: output iso naming convention:
-         dd-driver_name-version.elx_y.iso for release iso
-    9) provide iso over people.redhat.com
+         NOTE: output ISO naming convention:
+         dd-driver_name-version.elx_y.iso for release ISO
+    9) provide ISO over people.redhat.com
 
   Cleanup:
     1) Change errata state from NEW_FILES into ON_QA
