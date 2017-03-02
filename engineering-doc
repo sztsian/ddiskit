@@ -7,12 +7,12 @@ Partner side:
       6.x https://bugzilla.redhat.com/show_bug.cgi?id=681975
       7.x https://bugzilla.redhat.com/show_bug.cgi?id=1090185
 
-NOTE: This bz created by partner is only for communication with partner.
+NOTE: This BZ created by partner is only for communication with partner.
       BZ don't have any flags.
-      When dup request is resolved, this bz will be closed MANUALY by engineer
-      like CURRENT RELEASE and in fixed field will be rpm name.
+      When DUP request is resolved, this BZ will be closed MANUALY by engineer
+      like CURRENT RELEASE and in fixed field will be RPM name.
 NOTE2: For request is significant
-       1) PCI or USB id for requested hardware.
+       1) PCI or USB ID for requested hardware.
        2) Hardware support in Y-stream kernel
        If these will be ok, enginned can start with next steps
 
@@ -23,7 +23,7 @@ Engineer side:
 
 Old way (DEPRECATED):
   Create testing DUD:
-    1) Clone rhel kernel
+    1) Clone RHEL kernel
          EL6: git://git.app.eng.bos.redhat.com/rhel6.git
          EL7: git://git.app.eng.bos.redhat.com/rhel7.git
     2) Update redhat/dup directory content
@@ -46,11 +46,11 @@ Old way (DEPRECATED):
              BUILD_TAG=2.6.32-573.el6
            Update build tag for right target version.
            WARNING: Please, use only rhel6 GA versions.
-                    DON'T USE z-stream versions!
+                    DON'T USE Z-stream versions!
          EL7: Boot into target kernel
            el7 script using build tag uname -r
            WARNING: Please, use only rhel7 GA versions.
-                    DON'T USE z-stream versions!           
+                    DON'T USE Z-stream versions!           
     5) Replace text in kmodtool:
          "%description   -n kmod-${kmod_name}${dashvariant}
          This package provides the ${kmod_name} kernel modules built for
@@ -71,11 +71,11 @@ Old way (DEPRECATED):
        make -f redhat/dup/Makefile DUP_DRIVER=bnx2x update-symvers
        make -f redhat/dup/Makefile DUP_DRIVER=bnx2x update-greylist
 
-    8) Build rpm
+    8) Build RPM
        make -f redhat/dup/Makefile DUP_DRIVER=bnx2x rpm
 
-    9) Build rpm with signed ko
-       Get srpm from redhat/dup/tmp/copy
+    9) Build RPM with signed ko
+       Get SRPM from redhat/dup/tmp/copy
        Build it in brew:
        brew build --scratch rhel-7.3-z-dup-candidate bnx2x.el7.src.rpm
        NOTE: This step is required, because in brew we have sign *.ko feature
@@ -102,29 +102,29 @@ Old way (DEPRECATED):
 
     12) Wait for partner testing and do necessary steps for release:
         Request dist-git repo called: drivername with branch rhelx.y
-        Request z-stream clone
-        NOTE: z-stream clone is clone from original y-stream request NOT dup request
+        Request Z-stream clone
+        NOTE: Z-stream clone is clone from original Y-stream request NOT DUP request
               This part of work will by done by gcase
 
-  Create and release Final rpms/DUD:
-    1) Download srpm from step 9
+  Create and release Final RPMs/DUD:
+    1) Download SRPM from step 9
     2) Unpack it:
        rpm -uvh driver.src.rpm
     3) revert step 5 (replace kmodtool text)
     4) Update SPEC/driver.spec
        There need add this string into changelog:
        - Resolves: #bz000000
-       BZ is z-stream number
+       BZ is Z-stream number
     4) Rebuild SRPM
        rpmbuild SPEC/driver.spec
-    5) Import srpm into distgit
+    5) Import SRPM into distgit
          rhpkg import driver.src.rpm
          git commit -a -s
          rhpkg push
          rhpkg build --traget=rhel-7.3-z-dup-candidate
     6) Create errata 
-    7) Wait for rpm signatures
-    8) Download signed RPMS/SRPMS
+    7) Wait for RPM signatures
+    8) Download signed RPMs/SRPMs
        NOTE: here is signed RPM/SRPM! this is not *.ko signature from brew
     9) Build release ISO
          Use create_disk.sh script:
@@ -135,12 +135,12 @@ Old way (DEPRECATED):
 
   Cleanup:
     1) Change errata state from NEW_FILES into ON_QA
-    2) Change dup request state into CLOSED -> CURRENT RELEASE
-       NOTE: This step do after dup release (errata in SHIP_LIVE) 
+    2) Change DUP request state into CLOSED -> CURRENT RELEASE
+       NOTE: This step do after DUP release (errata in SHIP_LIVE) 
 
 New way:
   Use tool called ddiskit:
-  1) Install python3-ddiskit rpm package
+  1) Install python3-ddiskit RPM package
 
   Create testing DUD:
     1) Clone rhel kernel
@@ -174,8 +174,8 @@ New way:
     5) Udate necessary fileds into module.config
     6) $ ddiskit generate_spec
     7) $ ddiskit build_rpm
-    8) Build rpm with signed ko
-       Get srpm from rpm/SRPM
+    8) Build RPM with signed ko
+       Get SRPM from rpm/SRPM
        Build it in brew:
        brew build --scratch rhel-7.3-z-dup-candidate bnx2x.el7.src.rpm
        NOTE: This step is required, because in brew we have sign *.ko feature
@@ -201,26 +201,26 @@ New way:
 
     11) Wait for partner testing and do necessary steps for release:
         Request dist-git repo called: drivername with branch rhelx.y
-        Request z-stream clone
-        NOTE: z-stream clone is clone from original y-stream request NOT dup request
+        Request Z-stream clone
+        NOTE: Z-stream clone is clone from original Y-stream request NOT DUP request
               This part of work will by done by gcase
 
-  Create and release Final rpms/DUD:
-    1) Download srpm from step 8
+  Create and release Final RPMs/DUD:
+    1) Download SRPM from step 8
     2) Update SPEC/driver.spec
        There need add this string into changelog:
        - Resolves: #bz000000
-       BZ is z-stream number
+       BZ is Z-stream number
     3) Rebuild SRPM
        rpmbuild SPEC/driver.spec
-    4) Import srpm into distgit
+    4) Import SRPM into distgit
          rhpkg import driver.src.rpm
          git commit -a -s
          rhpkg push
          rhpkg build --traget=rhel-7.3-z-dup-candidate
     5) Create errata 
-    6) Wait for rpm signatures
-    7) Download signed RPMS/SRPMS
+    6) Wait for RPM signatures
+    7) Download signed RPMs/SRPMs
        NOTE: here is signed RPM/SRPM! this is not *.ko signature from brew
     8) Build release ISO
          Use create_disk.sh script:
@@ -231,5 +231,5 @@ New way:
 
   Cleanup:
     1) Change errata state from NEW_FILES into ON_QA
-    2) Change dup request state into CLOSED -> CURRENT RELEASE
-       NOTE: This step do after dup release (errata in SHIP_LIVE) 
+    2) Change DUP request state into CLOSED -> CURRENT RELEASE
+       NOTE: This step do after DUP release (errata in SHIP_LIVE) 
