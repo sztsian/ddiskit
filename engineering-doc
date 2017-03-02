@@ -19,7 +19,7 @@ NOTE2: For request is significant
 Engineer side:
   This part can by done by two ways:
   Old with kernel "intree" scripts
-  New with ddiskit  
+  New with ddiskit
 
 Old way (DEPRECATED):
   Create testing DUD:
@@ -50,7 +50,7 @@ Old way (DEPRECATED):
          EL7: Boot into target kernel
            el7 script using build tag uname -r
            WARNING: Please, use only rhel7 GA versions.
-                    DON'T USE Z-stream versions!           
+                    DON'T USE Z-stream versions!
     5) Replace text in kmodtool:
          "%description   -n kmod-${kmod_name}${dashvariant}
          This package provides the ${kmod_name} kernel modules built for
@@ -122,7 +122,7 @@ Old way (DEPRECATED):
          git commit -a -s
          rhpkg push
          rhpkg build --traget=rhel-7.3-z-dup-candidate
-    6) Create errata 
+    6) Create errata
     7) Wait for RPM signatures
     8) Download signed RPMs/SRPMs
        NOTE: here is signed RPM/SRPM! This is not *.ko signature from brew
@@ -218,7 +218,7 @@ New way:
          git commit -a -s
          rhpkg push
          rhpkg build --traget=rhel-7.3-z-dup-candidate
-    5) Create errata 
+    5) Create errata
     6) Wait for RPM signatures
     7) Download signed RPMs/SRPMs
        NOTE: here is signed RPM/SRPM! This is not *.ko signature from brew
@@ -232,4 +232,4 @@ New way:
   Cleanup:
     1) Change errata state from NEW_FILES into ON_QA
     2) Change DUP request state into CLOSED -> CURRENT RELEASE
-       NOTE: This step do after DUP release (errata in SHIP_LIVE) 
+       NOTE: This step do after DUP release (errata in SHIP_LIVE)
