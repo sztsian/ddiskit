@@ -254,7 +254,7 @@ New way:
        - Resolves: #bz000000
        BZ is Z-stream number
     3) Rebuild SRPM
-       rpmbuild SPEC/driver.spec
+         ddiskit build_rpm -s
     4) Import SRPM into dist-git
          rhpkg import <driver_name>.src.rpm
          git commit -a -s
