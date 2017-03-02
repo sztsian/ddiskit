@@ -265,9 +265,9 @@ New way:
     7) Download signed RPMs/SRPMs
        NOTE: here is signed RPM/SRPM! This is not *.ko signature from brew
     8) Build release ISO
-         Use create_disk.sh script:
-         create_disk.sh *.rpm
-         NOTE: output ISO naming convention:
+         $ ddiskit build_iso <rpm_directory>
+         NOTE: output ISO naming convention (should be automatically generated
+         by ddiskit):
          dd-<vendor>-<driver_name>-<version>.el<x>_<y>.iso for release ISO
     9) provide ISO over people.redhat.com
 
