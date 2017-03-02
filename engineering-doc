@@ -153,7 +153,6 @@ New way:
     3) $ ddiskit prepare_sources
        Command will prepare directory structure
        .
-       |-- iso
        |-- module.config
        |-- rpm
        |   |-- BUILD
