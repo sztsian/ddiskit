@@ -141,6 +141,10 @@ Old way (DEPRECATED):
 New way:
   Use tool called ddiskit:
   1) Install python-ddiskit RPM package
+      * It is available in
+        https://copr.fedorainfracloud.org/coprs/ersin/ddiskit/
+        which can be enabled using this command:
+        $ yum copr enable ersin/ddiskit
 
   Create testing DUD:
     1) Clone rhel kernel
