@@ -217,7 +217,20 @@ New way:
        NOTE: output ISO naming convention:
        dd-driver_name-version.elx.iso for testing ISO
 
-    10) Provide ISO over people.redhat.com and fill this into bz:
+    10) Provide ISO over people.redhat.com
+        * In case you can't access people.redhat.com via ssh, you are probably
+          not added to the appropriate access group, please file request at
+          help.redhat.com, with short description like "Create people.redhat.com
+          account" and content like "I need a people.redhat.com account."
+        * In the home directory, create "public_html" directory, its contents
+          would be accessible via https://people.redhat.com/<username>/, and put
+          some index.html there, in order to prevent directory index to be
+          viewable.
+        * It is recommended that path to ISO have been obscured somehow, for
+          example, put ISO into a directory with name which is derived from the
+          result of ISO file hash value.
+        * Do not forget change ISO access rights so it would be accessible.
+    11) Add a comment to a partner DUP request BZ:
         ---------------------------------------------------------
         We have a DUP package ready for you to test. You can download the package here:
 
@@ -228,7 +241,7 @@ New way:
         -Petr
         ---------------------------------------------------------
 
-    11) Wait for partner testing and do necessary steps for release:
+    12) Wait for partner testing and do necessary steps for release:
         Request dist-git repo called: drivername with branch rhelx.y
         Request Z-stream clone
         NOTE: Z-stream clone is clone from original Y-stream request NOT DUP request
