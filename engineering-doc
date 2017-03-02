@@ -11,13 +11,13 @@ NOTE: This BZ created by partner is only for communication with partner.
       BZ don't have any flags.
       When DUP request is resolved, this BZ will be closed MANUALLY by engineer
       like CURRENT RELEASE and in fixed field will be RPM name.
-NOTE2: For request is significant
+NOTE2: For request it is significant to have:
        1) PCI or USB ID for requested hardware.
-       2) Hardware support in Y-stream kernel
-       If these will be ok, engineer can start with next steps
+       2) Hardware support is in Y-stream kernel.
+       If these will be OK, engineer can start with the next steps
 
 Engineer side:
-  This part can by done by two ways:
+  This part can by done in two ways:
   Old with kernel "in-tree" scripts
   New with ddiskit
 
@@ -28,7 +28,7 @@ Old way (DEPRECATED):
          EL7: git://git.app.eng.bos.redhat.com/rhel7.git
     2) Update redhat/dup directory content
        NOTE: in-tree code is deprecated and DON'T USE IT!
-       Right version currently have only poros!
+       Only poros currently has the right version!
     3) Edit redhat/dup/Makefile.sources file:
        Example:
          # bnx2x
@@ -104,7 +104,7 @@ Old way (DEPRECATED):
         Request dist-git repo called: <driver_name> with branch rhel-<x>.<y>
         Request Z-stream clone
         NOTE: Z-stream clone is clone from original Y-stream request NOT DUP request
-              This part of work will by done by gcase
+              This part of work is done by gcase, DUP lead
 
   Create and release Final RPMs/DUD:
     1) Download SRPM from step 9
@@ -112,7 +112,7 @@ Old way (DEPRECATED):
        rpm -uvh driver.src.rpm
     3) revert step 5 (replace kmodtool text)
     4) Update SPEC/driver.spec
-       There need add this string into changelog:
+       This string should be added to the changelog:
        - Resolves: #bz000000
        BZ is Z-stream number
     4) Rebuild SRPM
@@ -122,10 +122,11 @@ Old way (DEPRECATED):
          git commit -a -s -m "<driver_name> DUP module for RHEL-7.3.z"
          rhpkg push
          rhpkg build --traget=rhel-7.3-z-dup-candidate
-    6) Create errata
+    6) Create an errata
     7) Wait for RPM signatures
     8) Download signed RPMs/SRPMs
-       NOTE: here is signed RPM/SRPM! This is not *.ko signature from brew
+       NOTE: here are signed RPM/SRPM! This is different from *.ko signature
+             from brew (which is also present)
     9) Build release ISO
          Use create_disk.sh script:
          create_disk.sh *.rpm
@@ -136,10 +137,10 @@ Old way (DEPRECATED):
   Cleanup:
     1) Change errata state from NEW_FILES into ON_QA
     2) Change DUP request state into CLOSED -> CURRENT RELEASE
-       NOTE: This step do after DUP release (errata in SHIP_LIVE) 
+       NOTE: This step do after DUP release (errata is in SHIP_LIVE state)
 
 New way:
-  Use tool called ddiskit:
+  Use the tool called ddiskit:
   1) Install python-ddiskit RPM package
       * It is available in
         https://copr.fedorainfracloud.org/coprs/ersin/ddiskit/
@@ -150,7 +151,7 @@ New way:
     1) Clone rhel kernel
          EL6: git://git.app.eng.bos.redhat.com/rhel6.git
          EL7: git://git.app.eng.bos.redhat.com/rhel7.git
-    2) Create backport patch
+    2) Create backport patch (if needed)
        For example, when making backport for bnx2x from
        2.6.32-600.el6 to 2.6.32-573.el6 you will create patch
        diff 2.6.32-573.el6 2.6.32-600.el6
@@ -168,7 +169,7 @@ New way:
        `-- src
            |-- firmware
            `-- patches
-    4) Copy source code into src
+    4) Copy source code into src directory
        Copy patches from step 2 into src/patches
         NOTE: respect kernel directory structure inside new src dir!
         Example: $ mkdir -p src/drivers/net/ethernet/broadcom
@@ -208,11 +209,11 @@ New way:
        Build it in brew:
        brew build --scratch rhel-7.3-z-dup-candidate bnx2x.el7.src.rpm
        NOTE: This step is required, because in brew we have sign *.ko feature
-       Sign feature is available only in special build targets called:
+       Sign feature is available only in special build targets called
        rhel-<x>.<y>-z-dup-candidate
 
     9) Build ISO
-       Download RPMs/SRPMs from step8
+       Download RPMs/SRPMs from step 8 into some directory
        $ ddiskit build_iso -i dd-<vendor>-<driver_name>-<version>.el<x>.iso <rpm_directory>
        NOTE: output ISO naming convention:
        dd-<vendor>-<driver_name>-<version>.el<x>.iso for testing ISO
@@ -241,11 +242,11 @@ New way:
         -Petr
         ---------------------------------------------------------
 
-    12) Wait for partner testing and do necessary steps for release:
-        Request dist-git repo called: <driver_name> with branch rhel-<x>.<y>
+    12) Wait for partner to perform testing and do necessary steps for release:
+        Request dist-git repo called <driver_name> with branch rhel-<x>.<y>
         Request Z-stream clone
         NOTE: Z-stream clone is clone from original Y-stream request NOT DUP request
-              This part of work will by done by gcase
+              This part of work is done by gcase, DUP lead
 
   Create and release Final RPMs/DUD:
     1) Download SRPM from step 8
@@ -263,15 +264,16 @@ New way:
     5) Create errata
     6) Wait for RPM signatures
     7) Download signed RPMs/SRPMs
-       NOTE: here is signed RPM/SRPM! This is not *.ko signature from brew
+       NOTE: here are signed RPM/SRPM! This is different from *.ko signature
+             from brew (which is also present).
     8) Build release ISO
          $ ddiskit build_iso <rpm_directory>
          NOTE: output ISO naming convention (should be automatically generated
          by ddiskit):
          dd-<vendor>-<driver_name>-<version>.el<x>_<y>.iso for release ISO
-    9) provide ISO over people.redhat.com
+    9) Put ISO to people.redhat.com
 
   Cleanup:
     1) Change errata state from NEW_FILES into ON_QA
     2) Change DUP request state into CLOSED -> CURRENT RELEASE
-       NOTE: This step do after DUP release (errata in SHIP_LIVE)
+       NOTE: This step do after DUP release (errata in SHIP_LIVE state)
