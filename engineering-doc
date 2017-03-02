@@ -74,7 +74,7 @@ Old way (DEPRECATED):
     8) Build RPM
        make -f redhat/dup/Makefile DUP_DRIVER=bnx2x rpm
 
-    9) Build RPM with signed ko
+    9) Build RPM with signed *.ko
        Get SRPM from redhat/dup/tmp/copy
        Build it in brew:
        brew build --scratch rhel-7.3-z-dup-candidate bnx2x.el7.src.rpm
@@ -203,7 +203,7 @@ New way:
                      $ git rev-parse HEAD
     6) $ ddiskit generate_spec
     7) $ ddiskit build_rpm
-    8) Build RPM with signed ko
+    8) Build RPM with signed *.ko
        Get SRPM from rpm/SRPMS
        Build it in brew:
        brew build --scratch rhel-7.3-z-dup-candidate bnx2x.el7.src.rpm
