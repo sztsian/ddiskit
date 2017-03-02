@@ -379,6 +379,11 @@ New way:
          by ddiskit):
          dd-<vendor>-<driver_name>-<version>.el<x>_<y>.iso for release ISO
     16) Put ISO to people.redhat.com
+        * Do not forget change ISO access rights so it would be accessible.
+    17) Provide URL to it to QE team via (options are in best-to-worst order):
+        * #dup IRC channel
+        * e-mail
+        * private Bugzilla comment.
 
   Cleanup:
     2) Change DUP request state into CLOSED -> CURRENT RELEASE
