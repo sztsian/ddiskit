@@ -170,9 +170,11 @@ New way:
            `-- patches
     4) Copy source code into src
        Copy patches from step 2 into src/patches
-        Example: $ cd rhel-kernel
-                 $ cp -r drivers/net/ethernet/broadcom/bnx2x/ ../src/
         NOTE: respect kernel directory structure inside new src dir!
+        Example: $ mkdir -p src/drivers/net/ethernet/broadcom
+                 $ cd rhel6
+                 $ cp -r drivers/net/ethernet/broadcom/bnx2x \
+                      ../src/drivers/net/ethernet/broadcom/
        Copy firmware files into src/firmware
     5) Update necessary fields into module.config
     6) $ ddiskit generate_spec
