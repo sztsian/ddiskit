@@ -27,8 +27,8 @@ Old way (DEPRECATED):
          EL6: git://git.app.eng.bos.redhat.com/rhel6.git
          EL7: git://git.app.eng.bos.redhat.com/rhel7.git
     2) Update redhat/dup directory content
-       note: intree code is deprecated and DON'T USE IT!!!!
-       Right version currently have only poros!!!
+       note: intree code is deprecated and DON'T USE IT!
+       Right version currently have only poros!
     3) Edit redhat/dup/Makefile.sources file:
        Example:
          # bnx2x
@@ -168,7 +168,7 @@ New way:
        Copy patches from step 2 into src/patches
         Example: $ cd rhel-kernel
                  $ cp -r drivers/net/ethernet/broadcom/bnx2x/ ../src/
-        NOTE: respect kernel directory structure inside new src dir!!!!
+        NOTE: respect kernel directory structure inside new src dir!
        Copy firmware files into src/firmware
     5) Update necessary fields into module.config
     6) $ ddiskit generate_spec
