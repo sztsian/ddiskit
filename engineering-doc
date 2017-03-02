@@ -87,7 +87,7 @@ Old way (DEPRECATED):
         Use create_disk.sh script:
         create_disk.sh *.rpm
         NOTE: output ISO naming convention:
-        dd-<driver_name>-<version>.el<x>.iso for testing ISO
+        dd-<vendor>-<driver_name>-<version>.el<x>.iso for testing ISO
 
     11) Provide ISO over people.redhat.com and fill this into bz:
         ---------------------------------------------------------
@@ -130,7 +130,7 @@ Old way (DEPRECATED):
          Use create_disk.sh script:
          create_disk.sh *.rpm
          NOTE: output ISO naming convention:
-         dd-<driver_name>-<version>.el<x>_<y>.iso for release ISO
+         dd-<vendor>-<driver_name>-<version>.el<x>_<y>.iso for release ISO
     10) provide ISO over people.redhat.com
 
   Cleanup:
@@ -215,7 +215,7 @@ New way:
        Download RPMs/SRPMs from step8
        $ ddiskit build_iso <rpm_directory>
        NOTE: output ISO naming convention:
-       dd-<driver_name>-<version>.el<x>.iso for testing ISO
+       dd-<vendor>-<driver_name>-<version>.el<x>.iso for testing ISO
 
     10) Provide ISO over people.redhat.com
         * In case you can't access people.redhat.com via ssh, you are probably
@@ -268,7 +268,7 @@ New way:
          Use create_disk.sh script:
          create_disk.sh *.rpm
          NOTE: output ISO naming convention:
-         dd-<driver_name>-<version>.el<x>_<y>.iso for release ISO
+         dd-<vendor>-<driver_name>-<version>.el<x>_<y>.iso for release ISO
     9) provide ISO over people.redhat.com
 
   Cleanup:
