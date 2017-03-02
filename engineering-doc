@@ -140,7 +140,7 @@ Old way (DEPRECATED):
 
 New way:
   Use tool called ddiskit:
-  1) Install python3-ddiskit RPM package
+  1) Install python-ddiskit RPM package
 
   Create testing DUD:
     1) Clone rhel kernel
