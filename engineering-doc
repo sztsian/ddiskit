@@ -213,7 +213,7 @@ New way:
 
     9) Build ISO
        Download RPMs/SRPMs from step8
-       $ ddiskit build_rpm rpm_directory
+       $ ddiskit build_iso rpm_directory
        NOTE: output ISO naming convention:
        dd-driver_name-version.elx.iso for testing ISO
 
