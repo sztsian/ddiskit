@@ -259,6 +259,11 @@ New way:
 
               BZ: https://bugzilla.redhat.com/show_bug.cgi?id=<Z-stream bug ID>
 
+        Get qa_ack+ (ask someone from QE team) and devel_ack+ (you probably
+        could set it yourself or ask someone with devel_grant permission on
+        bugzilla) on Z-Stream bug. This would be needed later for rhpkg push,
+        for example.
+
   Create and release Final RPMs/DUD:
     1) Download SRPM from step 8
     2) Update rpm/SPECS/driver.spec
