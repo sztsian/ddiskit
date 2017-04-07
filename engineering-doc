@@ -253,6 +253,7 @@ New way:
           * Component: "RHEL 7"
             RHEL release)
           * Summary: "rhel-7.3 branch for <driver_name>"
+          * Product Affects Version (it's a separate tab): rhel-7.3
           * Description:
               Can I ask you to create rhel-7.3 branch in <driver_name> dist-git
               repository? It is needed for the <driver_name> DUP package.
@@ -282,6 +283,7 @@ New way:
           * Project: "RCM"
           * Component: "RHEL 7"
           * Summary: "Add package <driver_name> to rhel-7.3 base tag"
+          * Product Affects Version (it's a separate tab): rhel-7.3
           * Description:
               Can I ask you to add package <driver_name> to rhel-7.3-z base tag,
               in order to be able to build it with
@@ -356,12 +358,12 @@ New way:
           * Project: "RCM"
           * Component: "RHEL 7"
           * Summary: "Product Listing for the <driver_name> DUP"
+          * Product Affects Version (it's a separate tab): rhel-7.3
           * Description:
               Can you please provide a product listing for the <driver_name>
               7.3.z DUP? Thanks.
 
               Errata: https://errata.devel.redhat.com/advisory/<errata ID>
-         * Product Affects Version: rhel-7.3
     11) Meanwhile, waive RPMDiff Pathnames check (which informs that kernel
         modules install in /lib and not in /usr/lib), there shouldn't be any
         other RPMDiff issues. You can provide the following comment for the
