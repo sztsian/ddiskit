@@ -265,6 +265,8 @@ New way:
         bugzilla) on Z-Stream bug. This would be needed later for rhpkg push,
         for example.
 
+        It's good idea to close the issue after it 's marked resolved and the
+        solution is tested.
   Create and release Final RPMs/DUD:
     1) Download SRPM from step 8
     2) Update rpm/SPECS/driver.spec
@@ -293,6 +295,10 @@ New way:
               command? It is needed for the <driver_name> DUP package. Thanks.
 
               BZ: https://bugzilla.redhat.com/show_bug.cgi?id=<Z-stream bug ID>
+
+       It's good idea to close the issue after it 's marked resolved and the
+       solution is tested.
+
        Note that in case this step is skipped, the next step would fail with the
        following error:
 
@@ -364,6 +370,9 @@ New way:
               7.3.z DUP? Thanks.
 
               Errata: https://errata.devel.redhat.com/advisory/<errata ID>
+
+        It's good idea to close the issue after it 's marked resolved and the
+        solution is tested.
     11) Meanwhile, waive RPMDiff Pathnames check (which informs that kernel
         modules install in /lib and not in /usr/lib), there shouldn't be any
         other RPMDiff issues. You can provide the following comment for the
