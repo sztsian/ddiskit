@@ -284,11 +284,11 @@ New way:
        (https://projects.engineering.redhat.com/):
           * Project: "RCM"
           * Component: "RHEL 7"
-          * Summary: "Add package <driver_name> to rhel-7.3 base tag"
+          * Summary: "Add package kmod-<vendor>-<driver_name> to rhel-7.3 base tag"
           * Product Affects Version (it's a separate tab): rhel-7.3
           * Description:
-              Can I ask you to add package <driver_name> to rhel-7.3-z base tag,
-              in order to be able to build it with
+              Can I ask you to add package kmod-<vendor>-<driver_name> to
+              rhel-7.3-z base tag, in order to be able to build it with
 
                   rhpkg build --target rhel-7.3-z-dup-candidate
 
