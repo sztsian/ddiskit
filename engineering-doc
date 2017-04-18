@@ -395,7 +395,7 @@ New way:
     11) Meanwhile, waive RPMDiff Pathnames check (which informs that kernel
         modules install in /lib and not in /usr/lib), there shouldn't be any
         other RPMDiff issues. You can provide the following comment for the
-        approval: "This is ok because we do deliver kernel module files under
+        approval: "This is OK because we do deliver kernel module files under
         /lib for now."
     12) When product listing is obtained, change errata state from NEW_FILES to
         ON_QA
