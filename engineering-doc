@@ -422,5 +422,7 @@ New way:
         * private Bugzilla comment.
 
   Cleanup:
-    2) Change DUP request state into CLOSED -> CURRENT RELEASE
-       NOTE: This step do after DUP release (errata in SHIP_LIVE state)
+    2) Change DUP request state into CLOSED with resolution CURRENT RELEASE.
+       Provide package name-version-release in the "Fixed In Version" field.
+       NOTE: This step should be done only after DUP has been released (errata
+       in SHIP_LIVE state).
