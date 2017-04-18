@@ -359,13 +359,19 @@ New way:
 
             All users who require kmod-<vendor>-<driver_name> are advised to install
             this new package.
-    9) Add brew build ID (not task ID!) to errata
+    9) Add brew build ID (not task ID!) to errata (or package name, see below)
         * Obtain build ID by opening brew task (task URL displayed by rhpkg
           build on step 6), click on the link in "Build" row, copy the value in
           the ID row — this is the brew build ID.
         * On the errata summary page, click "Edit builds" button in the
           "Add/Update Brew builds" row
         * Paste obtained bew build ID into the text area.
+	 * Alternatively, package name can be provided there, in the
+	   "name-vendor-release" format, for example:
+	   "kmod-redhat-ixgbe-4.4.0_k_rh7.4_z-2.el7_3", where package name is
+	   "kmod-redhat-ixgbe" (in kmod-<vendor>-<driver_name> format), version
+	   is "4.4.0_k_rh7.4_z" and release is "2.el7_3" (with 2 being RPM
+	   release number and el7_3 being dist suffix)
         * Click "Find new builds"
         * You will get warning "Could not get product listings for the following
           Brew builds", this would be handled in the next step.
