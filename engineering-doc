@@ -373,11 +373,13 @@ New way:
 	   is "4.4.0_k_rh7.4_z" and release is "2.el7_3" (with 2 being RPM
 	   release number and el7_3 being dist suffix)
         * Click "Find new builds"
-        * You will get warning "Could not get product listings for the following
-          Brew builds", this would be handled in the next step.
+        * You will (probably) get a warning "Could not get product listings for
+	  the following Brew builds", this would be handled in the next step.
         * Click "Save Builds".
-    10) Request product listing. This could be done by creating a new ticket in
-        RCM Jira (https://projects.engineering.redhat.com/):
+    10) Product listings for the new packages should generated overnight. So,
+        there are chances that product listing for the package already exists.
+	Otherwise, request product listing. This could be done by creating a new
+	ticket in RCM Jira (https://projects.engineering.redhat.com/):
           * Project: "RCM"
           * Component: "RHEL 7"
           * Summary: "Product Listing for the <driver_name> DUP"
