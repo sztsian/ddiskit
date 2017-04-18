@@ -287,6 +287,7 @@ New way:
          cd <driver_name>
          git checkout rhel-<x>.<y>
          rhpkg import <driver_name>.src.rpm
+         ## It probably makes sense to also copy module.config there
          git commit -a -s -m "<driver_name> DUP module for RHEL-7.3.z"
          rhpkg push
     5) Request addition of package to the build tag. This could be done by
