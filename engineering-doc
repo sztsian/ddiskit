@@ -283,6 +283,9 @@ New way:
     3) Rebuild SRPM
          ddiskit build_rpm -s
     4) Import SRPM into dist-git
+         rhpkg clone <driver_name>
+         cd <driver_name>
+         git checkout rhel-<x>.<y>
          rhpkg import <driver_name>.src.rpm
          git commit -a -s -m "<driver_name> DUP module for RHEL-7.3.z"
          rhpkg push
