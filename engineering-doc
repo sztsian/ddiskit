@@ -254,7 +254,14 @@ New way:
             RHEL release)
           * Summary: "rhel-7.3 branch for <driver_name>"
           * Product Affects Version (it's a separate tab): rhel-7.3
-          * Description:
+          * Description (in case there is no dist-git repository for the
+	    <driver_name>):
+              Can I ask you to create dist-git repository <dirver_name> and add
+	      rhel-7.3 branch to it? It is needed for the <driver_name> DUP
+	      package.
+
+              BZ: https://bugzilla.redhat.com/show_bug.cgi?id=<Z-stream bug ID>
+          * Description (in case dist-git repository <driver_name> already exists):
               Can I ask you to create rhel-7.3 branch in <driver_name> dist-git
               repository? It is needed for the <driver_name> DUP package.
 
