@@ -431,3 +431,34 @@ New way:
        Provide package name-version-release in the "Fixed In Version" field.
        NOTE: This step should be done only after DUP has been released (errata
        in "SHIPPED LIVE" state).
+    2) Create a bug with kABI greylist in KSC format in order to track greylist
+       breakage.
+       * This document assumes usage of ksc tool available in RHEL repos
+       * Example /etc/ksc.conf (for modules issued by Red Hat):
+         [bugzilla]
+         user=<your_ldap_id>@redhat.com
+         # It is the value from "Partner" field of bug, like AMD, Intel,
+         # Avago (LSI)
+         partner=Red Hat
+         # It is the value for visibility groups, should be partner group name,
+         # like amd, intel, avago (lsi). For Red Hat releases, devel group is
+         # chosen deliberately.
+         partnergroup=devel
+         server=https://bugzilla.redhat.com/xmlrpc.cgi
+       * If there is some RHEL installation with the drivers from DUP installed
+         and some KSC configuration like the example one above provided, one can
+         run something like this:
+
+           # One can provide direct list of packages instead of
+           # $(rpm -qa kmod-<vendor>-\*)
+           for i in $(rpm -ql $(rpm -qa kmod-<vendor>-\*) | grep '\.ko$'); do \
+                   ksc -s -k "$i"; done
+
+         It will ask some questions (on which one should answer "y" or his
+         Bugzilla password) and will create bugs on Bugzilla.
+       * Follow the links ksc provided and change Bug summary, prepending
+         something like "[<driver_name> <RHEL release> DUP]" (until
+         https://bugzilla.redhat.com/show_bug.cgi?id=1432864 is fixed) and
+         close them with NOTABUG resolution. This will allow tracking of
+         greylist changes and notifying about changes in checksums of symbols
+         mentioned in greylist.
