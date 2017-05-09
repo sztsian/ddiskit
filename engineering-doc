@@ -255,10 +255,10 @@ New way:
           * Summary: "rhel-7.3 branch for <driver_name>"
           * Product Affects Version (it's a separate tab): rhel-7.3
           * Description (in case there is no dist-git repository for the
-	    <driver_name>):
+            <driver_name>):
               Can I ask you to create dist-git repository <dirver_name> and add
-	      rhel-7.3 branch to it? It is needed for the <driver_name> DUP
-	      package.
+              rhel-7.3 branch to it? It is needed for the <driver_name> DUP
+              package.
 
               BZ: https://bugzilla.redhat.com/show_bug.cgi?id=<Z-stream bug ID>
           * Description (in case dist-git repository <driver_name> already exists):
@@ -366,20 +366,20 @@ New way:
         * On the errata summary page, click "Edit builds" button in the
           "Add/Update Brew builds" row
         * Paste obtained bew build ID into the text area.
-	 * Alternatively, package name can be provided there, in the
-	   "name-vendor-release" format, for example:
-	   "kmod-redhat-ixgbe-4.4.0_k_rh7.4_z-2.el7_3", where package name is
-	   "kmod-redhat-ixgbe" (in kmod-<vendor>-<driver_name> format), version
-	   is "4.4.0_k_rh7.4_z" and release is "2.el7_3" (with 2 being RPM
-	   release number and el7_3 being dist suffix)
+         * Alternatively, package name can be provided there, in the
+           "name-vendor-release" format, for example:
+           "kmod-redhat-ixgbe-4.4.0_k_rh7.4_z-2.el7_3", where package name is
+           "kmod-redhat-ixgbe" (in kmod-<vendor>-<driver_name> format), version
+           is "4.4.0_k_rh7.4_z" and release is "2.el7_3" (with 2 being RPM
+           release number and el7_3 being dist suffix)
         * Click "Find new builds"
         * You will (probably) get a warning "Could not get product listings for
-	  the following Brew builds", this would be handled in the next step.
+          the following Brew builds", this would be handled in the next step.
         * Click "Save Builds".
     10) Product listings for the new packages should generated overnight. So,
         there are chances that product listing for the package already exists.
-	Otherwise, request product listing. This could be done by creating a new
-	ticket in RCM Jira (https://projects.engineering.redhat.com/):
+        Otherwise, request product listing. This could be done by creating a new
+        ticket in RCM Jira (https://projects.engineering.redhat.com/):
           * Project: "RCM"
           * Component: "RHEL 7"
           * Summary: "Product Listing for the <driver_name> DUP"
