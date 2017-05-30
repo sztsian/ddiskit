@@ -422,8 +422,8 @@ New way:
     16) Put ISO to people.redhat.com
         * Do not forget change ISO access rights so it would be accessible.
     17) Provide URL to it to QE team via (options are in best-to-worst order):
-        * #dup IRC channel
         * e-mail
+        * #dup IRC channel
         * private Bugzilla comment.
 
   Cleanup:
