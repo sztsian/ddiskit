@@ -121,7 +121,7 @@ Old way (DEPRECATED):
          rhpkg import driver.src.rpm
          git commit -a -s -m "<driver_name> DUP module for RHEL-7.3.z"
          rhpkg push
-         rhpkg build --traget=rhel-7.3-z-dup-candidate
+         rhpkg build --target=rhel-7.3-z-dup-candidate
     6) Create an errata
     7) Wait for RPM signatures
     8) Download signed RPMs/SRPMs
